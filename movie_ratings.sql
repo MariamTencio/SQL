@@ -1,34 +1,35 @@
-can you check this code and tell me what id does:
+-- Create the Movie_Rankings database
+CREATE DATABASE Movie_Rankings;
 
-CREATE DATABASE Movie_Rankings
-;
+-- Use the Movie_Rankings database
+USE Movie_Rankings;
 
 -- Create Movies table
 CREATE TABLE Movies (
-    id INTEGER PRIMARY KEY,
-    title TEXT NOT NULL,
-    genre TEXT,
-    release_date DATE,
-    director TEXT
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    genre TEXT,
+    release_date DATE,
+    director TEXT
 );
 
 -- Create Users table
 CREATE TABLE Users (
-    id INTEGER PRIMARY KEY,
-    username TEXT NOT NULL UNIQUE,
-    email TEXT NOT NULL UNIQUE
+    id INTEGER PRIMARY KEY,
+    username TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE
 );
 
 -- Create Ratings table
 CREATE TABLE Ratings (
-    id INTEGER PRIMARY KEY,
-    user_id INTEGER,
-    movie_id INTEGER,
-    rating INTEGER CHECK(rating >= 1 AND rating <= 5),
-    review TEXT,
-    rating_date DATE,
-    FOREIGN KEY(user_id) REFERENCES Users(id),
-    FOREIGN KEY(movie_id) REFERENCES Movies(id)
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    movie_id INTEGER,
+    rating INTEGER CHECK(rating >= 1 AND rating <= 5),
+    review TEXT,
+    rating_date DATE,
+    FOREIGN KEY(user_id) REFERENCES Users(id),
+    FOREIGN KEY(movie_id) REFERENCES Movies(id)
 );
 
 -- Insert a new movie
@@ -60,4 +61,4 @@ WHERE user_id = 1;
 SELECT Movies.title, AVG(Ratings.rating) AS average_rating
 FROM Movies
 JOIN Ratings ON Movies.id = Ratings.movie_id
-GROUP BY Movies.id;
+GROUP BY Movies.id, Movies.title;
