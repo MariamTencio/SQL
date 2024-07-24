@@ -1,8 +1,6 @@
 # Overview
 
-{Important! Do not say in this section that this is college assignment. Talk about what you are trying to accomplish as a software engineer to further your learning.}
-
-{Provide a description of the software that you wrote and how it integrates with a SQL Relational Database. Describe how to use your program.}
+I've created a software application that manages movie rankings using a SQL Relational Database. 
 
 {Describe your purpose for writing this software.}
 
@@ -12,27 +10,44 @@
 
 # Relational Database
 
-{Describe the relational database you are using.}
+The relational database I'm using is named Movie_Rankings. It consists of three main tables: Movies, Users, and Ratings.
 
-{Describe the structure (tables) of the relational database that you created.}
+Tables:
+Movies Table Structure:
+id (INTEGER, PRIMARY KEY)
+title (TEXT, NOT NULL)
+genre (TEXT)
+release_date (DATE)
+director (TEXT)
+
+Users Table Structure:
+id (INTEGER, PRIMARY KEY)
+username (TEXT, NOT NULL, UNIQUE)
+email (TEXT NOT NULL, UNIQUE)
+
+Ratings Table Structure:
+id (INTEGER, PRIMARY KEY)
+user_id (INTEGER, FOREIGN KEY referencing Users.id)
+movie_id (INTEGER, FOREIGN KEY referencing Movies.id)
+rating (INTEGER, CHECK constraint: rating >= 1 AND rating <= 5)
+review (TEXT)
+rating_date (DATE)
+
 
 # Development Environment
-
-{Describe the tools that you used to develop the software}
-
-{Describe the programming language that you used and any libraries.}
+The programming langiage is SQL and the database management systen was MySQL
 
 # Useful Websites
 
 {Make a list of websites that you found helpful in this project}
 
-- [Web Site Name](http://url.link.goes.here)
-- [Web Site Name](http://url.link.goes.here)
+- [Web Site Name](https://dev.mysql.com/doc/mysql-getting-started/en/)
+- [Web Site Name](https://www.mssqltips.com/)
 
 # Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
+Looking forward, here are some improvements and additions I plan to make to this project:
 
-- Item 1
-- Item 2
-- Item 3
+- Improve user interface.
+- Implement user authentication and authorization features.
+- Expand the database schema to include more detailed movie information.
